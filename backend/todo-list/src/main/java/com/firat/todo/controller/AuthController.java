@@ -1,5 +1,6 @@
 package com.firat.todo.controller;
 
+import com.firat.todo.dto.LoginDto;
 import com.firat.todo.dto.RegisterDto;
 import com.firat.todo.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,15 @@ public class AuthController {
         String response = authService.register(registerDto);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    // Build Login REST API
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+
+        String response = authService.login(loginDto);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
