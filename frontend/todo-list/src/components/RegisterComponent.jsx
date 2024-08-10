@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { registerAPICall } from '../services/AuthService'
 
 const RegisterComponent = () => {
 
@@ -8,12 +9,18 @@ const RegisterComponent = () => {
   const [password, setPassword] = useState('')
 
   function handleRegistrationForm(e) {
-    
+
     e.preventDefault();
 
-    const register = {name, username, email, password}
+    const register = { name, username, email, password }
 
     console.log(register);
+
+    registerAPICall(register).then((response) => {
+      console.log(response.data);
+    }).catch(error => {
+      console.error(error);
+    })
   }
 
   return (
@@ -37,7 +44,7 @@ const RegisterComponent = () => {
                       className='form-control'
                       placeholder='Enter name'
                       value={name}
-                      onChange={ (e) => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     >
                     </input>
                   </div>
@@ -52,7 +59,7 @@ const RegisterComponent = () => {
                       className='form-control'
                       placeholder='Enter Username'
                       value={username}
-                      onChange={ (e) => setUsername(e.target.value)}
+                      onChange={(e) => setUsername(e.target.value)}
                     >
                     </input>
                   </div>
@@ -66,7 +73,7 @@ const RegisterComponent = () => {
                       className='form-control'
                       placeholder='Enter Email Address'
                       value={email}
-                      onChange={ (e) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                     >
                     </input>
                   </div>
@@ -81,14 +88,14 @@ const RegisterComponent = () => {
                       className='form-control'
                       placeholder='Enter Password'
                       value={password}
-                      onChange={ (e) => setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                     >
                     </input>
                   </div>
                 </div>
 
                 <div className='form-group mb-3'>
-                  <button className='btn btn-primary' onClick={ (e) => handleRegistrationForm(e)}>Submit</button>
+                  <button className='btn btn-primary' onClick={(e) => handleRegistrationForm(e)}>Submit</button>
 
                 </div>
 
